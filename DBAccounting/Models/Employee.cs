@@ -14,14 +14,19 @@ namespace DBAccounting.Models
         HigherProfessional = 3 //Высшее профессиональное 
     }
 
-    class Employee
+    public class Employee
     {
         public long Id { get; set; }
-        public string Fullname { get; set; } //ФИО
+        public string FullName { get; set; } //ФИО
         public TypeEducation Education { get; set; } //Образование
         public string PositionWork { get; set; } //Должность
         public DateTime AdmissionWork { get; set; } //Дата поступления на работу
         public float Salary { get; set; } //Оклад
+
+        public void SetIntEducation(long value)
+        {
+            Education = (TypeEducation)value;
+        }
 
         public string GetTypeEducationTextRus()
         {

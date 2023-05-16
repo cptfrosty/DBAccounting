@@ -17,23 +17,14 @@ namespace DBAccounting
         public Form1()
         {
             InitializeComponent();
-            Employee emp1 = new Employee();
-            emp1.Fullname = "Иванов Иван Иванович";
-            Employee emp2 = new Employee();
-            emp2.Fullname = "Иванов Сергей Петрович";
-            Employee emp3 = new Employee();
-            emp3.Fullname = "Лунский Павел Иванович";
-            Employee emp4 = new Employee();
-            emp4.Fullname = "Сергеев Иван Иванович";
-            emp4.Id = 4;
-            StaffController.AddEmployee(emp1);
-            StaffController.AddEmployee(emp2);
-            StaffController.AddEmployee(emp3);
-            StaffController.AddEmployee(emp4);
+            StaffController.DBInit();
+            InfoLabel.Text = "";
         }
 
         private void BtnAllEmp_Click(object sender, EventArgs e)
         {
+            InfoLabel.Text = "";
+
             dgEmplooyes.Columns.Clear();
 
             dgEmplooyes.Columns.Add("fullname", "ФИО");
@@ -43,12 +34,14 @@ namespace DBAccounting
             var list = StaffController.GetStaffEducationSort();
             foreach (Employee emp in list)
             {
-                dgEmplooyes.Rows.Add(emp.Fullname, emp.GetTypeEducationTextRus());
+                dgEmplooyes.Rows.Add(emp.FullName, emp.GetTypeEducationTextRus());
             }
         }
 
         private void BtnEducation_Click(object sender, EventArgs e)
         {
+            InfoLabel.Text = "";
+
             dgEmplooyes.Columns.Clear();
 
             dgEmplooyes.Columns.Add("fullname", "ФИО");
@@ -56,13 +49,18 @@ namespace DBAccounting
 
             var list = StaffController.GetStaffEducationSort();
             foreach (Employee emp in list) {
-                dgEmplooyes.Rows.Add(emp.Fullname, emp.GetTypeEducationTextRus());
+                dgEmplooyes.Rows.Add(emp.FullName, emp.GetTypeEducationTextRus());
             }
 
+            InfoLabel.Text =
+                $"С высшем образованием: {StaffController.CountHigherEducation()}; " +
+                $"Со средним специальным {StaffController.CountTechnicalEducation()}";
         }
 
         private void BtnRatingSalary_Click(object sender, EventArgs e)
         {
+            InfoLabel.Text = "";
+
             dgEmplooyes.Columns.Clear();
 
             dgEmplooyes.Columns.Add("fullname", "ФИО");
@@ -71,12 +69,14 @@ namespace DBAccounting
             var list = StaffController.GetStaffSalarySort();
             foreach (Employee emp in list)
             {
-                dgEmplooyes.Rows.Add(emp.Fullname, emp.Salary);
+                dgEmplooyes.Rows.Add(emp.FullName, emp.Salary);
             }
         }
 
         private void BtnExperience_Click(object sender, EventArgs e)
         {
+            InfoLabel.Text = "";
+
             dgEmplooyes.Columns.Clear();
 
             dgEmplooyes.Columns.Add("fullname", "ФИО");
@@ -85,7 +85,7 @@ namespace DBAccounting
             var list = StaffController.GetStaffExperienceSort();
             foreach (Employee emp in list)
             {
-                dgEmplooyes.Rows.Add(emp.Fullname, emp.GetExperience());
+                dgEmplooyes.Rows.Add(emp.FullName, emp.GetExperience());
             }
         }
 

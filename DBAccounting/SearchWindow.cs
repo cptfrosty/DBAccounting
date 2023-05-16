@@ -29,7 +29,11 @@ namespace DBAccounting
             int index = this.LbStaff.IndexFromPoint(e.Location);
             if (index != ListBox.NoMatches)
             {
-                MessageBox.Show(LbStaff.Items[index].ToString());
+                var info = LbStaff.Items[index].ToString();
+                long id = int.Parse(info.Split(' ')[0]);
+                Models.Employee emp = StaffController.GetEmployee(id);
+                InfoUser infoUser = new InfoUser(emp);
+                infoUser.ShowDialog();
             }
         }
 
@@ -40,7 +44,7 @@ namespace DBAccounting
 
             foreach(var item in search)
             {
-                LbStaff.Items.Add($"{item.Id.ToString("00000")} {item.Fullname}");
+                LbStaff.Items.Add($"{item.Id.ToString("00000")} {item.FullName}");
             }
         }
     }

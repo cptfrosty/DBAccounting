@@ -11,6 +11,16 @@ namespace DBAccounting
     {
         private static List<Employee> s_staff = new List<Employee>();
 
+        public static void DBInit()
+        {
+            s_staff = Database.Database.GetListEmployees();
+        }
+
+        public static Employee GetEmployee(long id)
+        {
+            return s_staff.Where(s => s.Id == id).FirstOrDefault();
+        }
+
         public static void AddEmployee(Employee employee) => s_staff.Add(employee);
 
         /// <summary>
@@ -54,7 +64,26 @@ namespace DBAccounting
 
         public static List<Employee> GetFindFullnameEmployee(string fullname)
         {
-            return s_staff.Where(a => a.Fullname.Contains(fullname)).ToList();
+            return s_staff.Where(a => a.FullName.Contains(fullname)).ToList();
+        }
+
+
+        /// <summary>
+        /// Кол-во человек с высшем образованием
+        /// </summary>
+        /// <returns></returns>
+        public static int CountHigherEducation()
+        {
+            return s_staff.Where(e => e.Education == TypeEducation.HigherProfessional).Count();
+        }
+
+        /// <summary>
+        /// Кол-во человек с высшем образованием
+        /// </summary>
+        /// <returns></returns>
+        public static int CountTechnicalEducation()
+        {
+            return s_staff.Where(e => e.Education == TypeEducation.SecondaryVocational).Count();
         }
     }
 }
