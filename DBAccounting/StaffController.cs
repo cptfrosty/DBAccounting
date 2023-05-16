@@ -13,6 +13,7 @@ namespace DBAccounting
 
         public static void DBInit()
         {
+            s_staff.Clear();
             s_staff = Database.Database.GetListEmployees();
         }
 
@@ -46,7 +47,7 @@ namespace DBAccounting
         /// <returns></returns>
         public static List<Employee> GetStaffSalarySort()
         {
-            s_staff.OrderBy(p => p.Salary);
+            s_staff = s_staff.OrderByDescending(p => p.Salary).ToList();
 
             return s_staff;
         }
@@ -57,8 +58,7 @@ namespace DBAccounting
         /// <returns></returns>
         public static List<Employee> GetStaffExperienceSort()
         {
-            s_staff.OrderBy(p => p.GetExperience());
-
+            s_staff = s_staff.OrderBy(p => p.GetExperience()).ToList();
             return s_staff;
         }
 
@@ -67,23 +67,15 @@ namespace DBAccounting
             return s_staff.Where(a => a.FullName.Contains(fullname)).ToList();
         }
 
-
+        
         /// <summary>
-        /// Кол-во человек с высшем образованием
+        /// Кол-во человек с образованием
         /// </summary>
+        /// <param name="typeEducation"></param>
         /// <returns></returns>
-        public static int CountHigherEducation()
+        public static int CountEducationEmployees(TypeEducation typeEducation)
         {
-            return s_staff.Where(e => e.Education == TypeEducation.HigherProfessional).Count();
-        }
-
-        /// <summary>
-        /// Кол-во человек с высшем образованием
-        /// </summary>
-        /// <returns></returns>
-        public static int CountTechnicalEducation()
-        {
-            return s_staff.Where(e => e.Education == TypeEducation.SecondaryVocational).Count();
+            return s_staff.Where(e => e.Education == typeEducation).Count();
         }
     }
 }

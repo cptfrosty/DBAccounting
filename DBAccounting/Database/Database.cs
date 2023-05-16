@@ -96,7 +96,7 @@ namespace DBAccounting.Database
                 command.Connection = connection;
                 command.CommandText = 
                     "INSERT INTO Employee (FullName, TypeEducation, PositionWork, AdmissionWork, Salary) " +
-                    $"VALUES ('{data.FullName}', {(int)data.Education}, '{data.PositionWork}', '{data.PositionWork}', {data.Salary})";
+                    $"VALUES ('{data.FullName}', {(int)data.Education}, '{data.PositionWork}', '{data.AdmissionWork}', {data.Salary})";
 
                 command.ExecuteNonQuery();
             }

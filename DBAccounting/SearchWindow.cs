@@ -47,5 +47,11 @@ namespace DBAccounting
                 LbStaff.Items.Add($"{item.Id.ToString("00000")} {item.FullName}");
             }
         }
+
+        private void BtnAddEmployee_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            AddUser addUser = new AddUser();
+            addUser.ShowDialog();
+        }
     }
 }

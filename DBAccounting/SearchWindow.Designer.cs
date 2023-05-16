@@ -33,6 +33,7 @@ namespace DBAccounting
             this.TbFullName = new System.Windows.Forms.TextBox();
             this.LbStaff = new System.Windows.Forms.ListBox();
             this.BtnSearch = new System.Windows.Forms.Button();
+            this.BtnAddEmployee = new System.Windows.Forms.LinkLabel();
             this.SuspendLayout();
             // 
             // label1
@@ -70,12 +71,24 @@ namespace DBAccounting
             this.BtnSearch.UseVisualStyleBackColor = true;
             this.BtnSearch.Click += new System.EventHandler(this.BtnSearch_Click);
             // 
+            // BtnAddEmployee
+            // 
+            this.BtnAddEmployee.AutoSize = true;
+            this.BtnAddEmployee.Location = new System.Drawing.Point(12, 49);
+            this.BtnAddEmployee.Name = "BtnAddEmployee";
+            this.BtnAddEmployee.Size = new System.Drawing.Size(118, 13);
+            this.BtnAddEmployee.TabIndex = 4;
+            this.BtnAddEmployee.TabStop = true;
+            this.BtnAddEmployee.Text = "Добавить сотрудника";
+            this.BtnAddEmployee.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.BtnAddEmployee_LinkClicked);
+            // 
             // SearchWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.ClientSize = new System.Drawing.Size(309, 450);
+            this.Controls.Add(this.BtnAddEmployee);
             this.Controls.Add(this.BtnSearch);
             this.Controls.Add(this.LbStaff);
             this.Controls.Add(this.TbFullName);
@@ -94,5 +107,6 @@ namespace DBAccounting
         private System.Windows.Forms.TextBox TbFullName;
         private System.Windows.Forms.ListBox LbStaff;
         private System.Windows.Forms.Button BtnSearch;
+        private System.Windows.Forms.LinkLabel BtnAddEmployee;
     }
 }
